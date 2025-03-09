@@ -76,6 +76,11 @@ Crear la vista y mostrar mediante ruta allUsers.
 Crear la vista y mostrar mediante ruta userDetail.
   - Mostrar solamente un texto en patanlla.
 
+Crear la vista y mostrar mediante ruta postUser.
+  - Mostrar solamente un texto en patanlla.
+
+Setear como default App y modificarla para el challenge.
+
 ## MVP1
 #### ITSM-1 Pantalla allUsers:
   Mostrar la tabla con datos mockeados.
