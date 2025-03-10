@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router'
 import CardUserDetail from '../components/CardUserDetail/CardUserDetail'
-import { Button } from '@mui/material'
+import { Backdrop, Button } from '@mui/material'
 import ContainerPosts from '../components/ContainerPosts/ContainerPosts'
 import { useEffect, useState } from 'react'
 import { IUser } from '../domain/User'
@@ -41,11 +41,14 @@ const UserDetails = () => {
 
   return (
     <div>
-      <h1>Detalles del usuario</h1>
-      {loading || user === null? (
-        <h2>Cargando datos...</h2>
+      {loading || user === null ? (
+        <Backdrop open={loading} style={{display: 'flex', flexDirection: 'column' }}>
+          <h1>Detalles del usuario</h1>
+          <h2>Cargando datos...</h2>
+        </Backdrop>
       ) : (
         <>
+          <h1>Detalles del usuario</h1>
           <CardUserDetail user={user} />
           <h2>Posteos</h2>
           <ContainerPosts posts={posts} />
