@@ -1,6 +1,8 @@
-import { Autocomplete, Button, TextField } from '@mui/material'
+import { Autocomplete, IconButton, TextField } from '@mui/material'
 import { defaultQueries, IQueriesFilterUser } from '../../views/AllUsers'
 import styles from './FilterUsers.module.css'
+import SearchIcon from '@mui/icons-material/Search'
+import ClearIcon from '@mui/icons-material/Clear'
 import { useState } from 'react'
 
 export type Options = {
@@ -69,8 +71,14 @@ const FilterUsers = (props: IFilterUser) => {
         onInputChange={(_, value) => handleOnChange('companyname', value)}
         renderInput={(params) => <TextField {...params} label='Nombre de empresa' />}
       />
-      <Button onClick={search}>Buscar</Button>
-      <Button onClick={handleClearQueries}>X</Button>
+      <div className={styles.containerButtons}>
+        <IconButton onClick={search}>
+          <SearchIcon />
+        </IconButton>
+        <IconButton onClick={handleClearQueries}>
+          <ClearIcon />
+        </IconButton>
+      </div>
     </div>
   )
 }
