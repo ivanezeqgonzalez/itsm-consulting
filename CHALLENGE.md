@@ -113,3 +113,19 @@ Setear como default App y modificarla para el challenge.
 #### ITSM-11 Los registros deben ser clickeables para redireccionar al detalle del usuario
 #### ITSM-12 Implementar ordenamiento en las columnas de la tabla (clickeando en los headers)
 #### ITSM-13 En caso de que los filtros de usuario no apliquen a la búsqueda, mostrar un mensaje de 'No se encuentra el usuario'.
+
+---
+El ticket ITSM-12 fue resuelto al haber utilizado en tickets anteriores la tabla de Material UI.
+El ticket ITSM-13 fue resuelto en tickets anteriores.
+El filtro de búsqueda está pensando para filtrar por varias coincidencias, como por ejemplo misma empresa de trabajo.
+
+Para un caso real de trabajo, algunas de las mejoras para realizar son:
+Crear constantes de colores, path de servicios, path de rutas.
+Tener un handler en caso de que los servicios fallen.
+Ofrecer un paginado para grandes cargas de resultados de búsqueda.
+Mantener el estado anterior del filtro de búsqueda para no perderlo en la transición hacia otras pantallas.
+Agregar tests.
+Algunos componentes tienen varios componentes internos, esto podria separarse para cumplir con SRP y mantener la legibilidad.
+Agregar responsive para mobile.
+Agregar accesibilidad.
+Mantener actualizado el CHANGELOG, package version, y generar tageos con cada merge.
