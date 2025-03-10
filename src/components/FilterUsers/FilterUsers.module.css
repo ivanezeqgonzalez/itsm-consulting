@@ -1,0 +1,11 @@
+.containerFIlters {
+  display: flex;
+  background-color: #f2f2f2;
+  justify-content: start;
+  gap: 20px;
+  height: 70px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  align-items: center;
+  padding-left: 15px;
+}
