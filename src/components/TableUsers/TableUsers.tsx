@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router'
 
 export interface ITableUsers {
   users: IUser[]
+  loading: boolean
 }
 
 const columns: GridColDef[] = [
@@ -34,25 +35,25 @@ const columns: GridColDef[] = [
 ]
 
 const TableUsers = (props: ITableUsers) => {
-  const { users } = props
+  const { users, loading } = props
   const paginationModel = { page: 0, pageSize: 5 }
   const navigate = useNavigate()
   const handleRowClick = (e: any) => {
-    console.log(e.id)
     navigate(`/userDetails/${e.id}`)
   }
 
   return (
     <Paper sx={{ height: 700, width: 1000 }}>
       <DataGrid
+        loading={loading}
         rows={users}
         columns={columns}
         autoPageSize
         disableColumnFilter
         disableColumnSelector
-        autosizeOnMount
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10]}
+        localeText={{ noRowsLabel: "No se han encontrado resultados para esta búsqueda." }}
         sx={{
           border: 0,
           '.MuiDataGrid-columnHeaderTitleContainer': { fontSize: 16, color: '#232325' }
