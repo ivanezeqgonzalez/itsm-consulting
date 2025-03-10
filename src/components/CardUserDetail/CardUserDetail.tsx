@@ -1,23 +1,29 @@
 import { IAddress, ICompany, IUser } from '../../domain/User'
-
+import styles from './CardUserDetail.module.css'
 export interface ICardUserDetail {
   user: IUser
 }
 interface IPersonalData {
-  id: number
-  name: string
-  username: string
-  email: string
+  user: IUser
 }
 
 const PersonalData = (props: IPersonalData) => {
-  const { id, name, username, email } = props
+  const { id, name, username, email } = props.user
   return (
-    <div>
-      ID: {id}
-      Nombre:{name}
-      Username: {username}
-      Email: {email}
+    <div className={styles.containerPersonalData}>
+      <p>
+        <b>ID: </b>
+        {id}
+      </p>
+      <p>
+        <b>Nombre: </b> {name}
+      </p>
+      <p>
+        <b>Username:</b> {username}
+      </p>
+      <p>
+        <b>Email:</b> {email}
+      </p>
     </div>
   )
 }
@@ -27,12 +33,15 @@ interface IAddressProps {
 const Address = (props: IAddressProps) => {
   const { address } = props
   return (
-    <div>
-      {address.street}
-      {address.suite}
-      {address.city}
-      {address.zipcode}
-      Geo: {address.geo.lat}, {address.geo.lng}
+    <div className={styles.containerAddress}>
+      <p>
+        <b>Address: </b>
+        {address.street}, {address.suite}, {address.city}, {address.zipcode}.
+      </p>
+      <p>
+        <b>Geo: </b>
+        {address.geo.lat}, {address.geo.lng}
+      </p>
     </div>
   )
 }
@@ -42,10 +51,35 @@ interface ICompanyProps {
 const Company = (props: ICompanyProps) => {
   const { company } = props
   return (
-    <div>
-      Nombre: {company.name}
-      Frase: {company.catchPhrase}
-      BS: {company.bs}
+    <div className={styles.containerCompany}>
+      <p>
+        <b>Nombre: </b> {company.name}
+      </p>
+      <p>
+        <b>Frase: </b> {company.catchPhrase}
+      </p>
+      <p>
+        <b>BS: </b> {company.bs}
+      </p>
+    </div>
+  )
+}
+interface IContactProps {
+  phone: string
+  website: string
+}
+const Contact = (props: IContactProps) => {
+  const { phone, website } = props
+  return (
+    <div className={styles.containerContact}>
+      <p>
+        <b>Tel: </b>
+        {phone}
+      </p>
+      <p>
+        <b>Web: </b>
+        {website}
+      </p>
     </div>
   )
 }
@@ -53,12 +87,11 @@ const Company = (props: ICompanyProps) => {
 const CardUserDetail = (props: ICardUserDetail) => {
   const { user } = props
   return (
-    <div style={{border: '1px solid white'}}>
-      Detalles del usuario:
-      <PersonalData id={user.id} name={user.name} username={user.username} email={user.email} />
+    <div className={styles.container}>
+      <div className={styles.containerPersonalDataAndContact}>
+        <PersonalData user={user} /> | <Contact phone={user.phone} website={user.website} />
+      </div>
       <Address address={user.address} />
-      Tel: {user.phone}
-      Web: {user.website}:
       <Company company={user.company} />
     </div>
   )
