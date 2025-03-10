@@ -1,9 +1,8 @@
-import * as React from 'react'
-import { DataGrid, GridColDef, GridEventListener } from '@mui/x-data-grid'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import Paper from '@mui/material/Paper'
 
 import { IUser } from '../../domain/User'
-import { useNavigate, userNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
 export interface ITableUsers {
   users: IUser[]
@@ -22,7 +21,6 @@ const columns: GridColDef[] = [
   {
     field: 'city',
     headerName: 'Ciudad',
-    sortable: false,
     width: 160,
     valueGetter: (value, row) => `${row.address.city || ''}`
   },
@@ -38,22 +36,28 @@ const columns: GridColDef[] = [
 const TableUsers = (props: ITableUsers) => {
   const { users } = props
   const paginationModel = { page: 0, pageSize: 5 }
-  const navigate = useNavigate();
-  const handleCellClick = (e: any) =>  {
-    console.log(e.id);
+  const navigate = useNavigate()
+  const handleRowClick = (e: any) => {
+    console.log(e.id)
     navigate(`/userDetails/${e.id}`)
   }
 
   return (
-    <Paper sx={{ height: 400, width: '100%' }}>
+    <Paper sx={{ height: 700, width: 1000 }}>
       <DataGrid
         rows={users}
         columns={columns}
+        autoPageSize
+        disableColumnFilter
+        disableColumnSelector
+        autosizeOnMount
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{ border: 0 }}
-        onCellClick={handleCellClick}
+        sx={{
+          border: 0,
+          '.MuiDataGrid-columnHeaderTitleContainer': { fontSize: 16, color: '#232325' }
+        }}
+        onRowClick={handleRowClick}
       />
     </Paper>
   )
