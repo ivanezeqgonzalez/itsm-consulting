@@ -53,6 +53,7 @@ const TableUsers = (props: ITableUsers) => {
         disableColumnSelector
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10]}
+        localeText={{ noRowsLabel: "No se han encontrado resultados para esta búsqueda." }}
         sx={{
           border: 0,
           '.MuiDataGrid-columnHeaderTitleContainer': { fontSize: 16, color: '#232325' }
