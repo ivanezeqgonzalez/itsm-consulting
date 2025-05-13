@@ -23,14 +23,14 @@ const columns: GridColDef[] = [
     field: 'city',
     headerName: 'Ciudad',
     width: 160,
-    valueGetter: (value, row) => `${row.address.city || ''}`
+    valueGetter: (_, row) => `${row.address.city || ''}`
   },
   {
     field: 'company',
     headerName: 'Empresa',
     type: 'string',
     width: 180,
-    valueGetter: (value, row) => `${row.company.name || ''}`
+    valueGetter: (_, row) => `${row.company.name || ''}`
   }
 ]
 

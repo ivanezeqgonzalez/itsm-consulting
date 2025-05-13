@@ -20,7 +20,7 @@ const defaultOptions: Options = {
   companyName: []
 }
 
-const filterArrayOf = (arr: IUser[], key: string): any[] => {
+const filterArrayOf = <T, K extends keyof T>(arr: T[], key: K): T[K][] => {
   return arr.map((element) => element[key])
 }
 
@@ -39,8 +39,8 @@ const getOptions = (users: IUser[]): Options => {
 }
 
 const filterUsers = (users: IUser[], queries: IQueriesFilterUser): IUser[] => {
-  const filteredKeys = Object.entries(queries).filter(([k, v]) => v !== '')
-  let result = users
+  const filteredKeys: [string, IUser][] = Object.entries(queries).filter(([, v]) => v !== '')
+  let result: IUser[] = users
   filteredKeys.forEach(([key, value]) => {
     result = result.filter((user) => user[key] === value)
   })
